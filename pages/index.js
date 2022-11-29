@@ -1,39 +1,59 @@
 import { useState } from "react"
-import TextField from "../components/atoms/textfield/input"
+import Image from 'next/image'
+
+import Button from "../components/atoms/button/Button"
+import Heading from "../components/atoms/text/Heading"
+import TextField from "../components/atoms/textfield/Input"
+import EncryptDecryptButton from "../components/organism/specificButton/EncryptDecryptButton"
 
 export default function Home() {
-  const [encrypt, setEncrypt] = useState('')
+  const [inputEncrypt, setInputEncrypt] = useState('')
   const [key, setKey] = useState('')
   const [result, setResult] = useState('')
+  const [type, setType] = useState('encryption')
 
-  const inputEncrypt = (e) => {
-    setEncrypt(e.target.value);
+  const handleInputEncrypt = (e) => {
+    setInputEncrypt(e.target.value);
   }
 
-  const inputKey = (e) => {
+  const handleInputKey = (e) => {
     setKey(e.target.value);
   }
 
   const onSubmit = () => {
-    setResult(encrypt);
+    setResult(inputEncrypt);
   }
 
   return (
-    <div className='flex flex-col items-center justify-center w-full py-20'>
-      <h1 className='font-bold text-[48px] text-center'>Chipper Text Encryption</h1>
-      <div className="w-full px-5 sm:px-20 xl:px-64">
-        <TextField type="text" label="plaintext" onChange={inputEncrypt}/>
+    <div className='flex flex-col items-center justify-center w-full px-5 py-20 sm:px-20 xl:px-64 bg-gradient-to-b from-indigo-800 to-black'>
+      <div className="hidden md:block">
+        <Heading size="3xl" fontWeight="bold" transform="uppercase">Mr.Encrypt</Heading>
       </div>
-      <div className="w-full px-5 sm:px-20 xl:px-64">
-        <label htmlFor="key">key</label>
-        <input id="key" type='text' className="w-full h-10 px-2 text-black bg-white rounded-lg" onChange={inputKey} value={key} placeholder={key} />
+      <div className="block md:hidden">
+        <Heading size="xl" fontWeight="bold" transform="uppercase">Mr.Encrypt</Heading>
       </div>
-      <div className="w-full px-5 sm:px-20 xl:px-64">
-        <button onClick={onSubmit} className="w-full px-6 py-2 my-2 font-bold text-white uppercase bg-indigo-500 rounded-lg hover:bg-indigo-700">encrypt</button>
+      <div className="mt-4">
+        <Heading size="sm" fontWeight="semibold">Choose The Algoritm!!</Heading>
       </div>
-      <div className="w-full px-5 sm:px-20 xl:px-64">
-        <h1 className="text-[24px] font-bold">Result:</h1>
-        <h1>{result}</h1>
+      <div className="flex items-center justify-center w-full h-12 bg-white rounded-full cursor-pointer md:w-8/12 xl:w-6/12">
+        <Heading size="xs" fontWeight="bold" transform="uppercase" color="black">Caesar chipper</Heading>
+      </div>
+      <EncryptDecryptButton type={type} setType={setType} />
+      <div className="w-full">
+        <TextField type="text" label={type === 'encryption' ? 'plaintext' : 'chippertext'} onChange={handleInputEncrypt} />
+      </div>
+      <div className="w-full">
+        <TextField type="text" label="key" onChange={handleInputKey} />
+      </div>
+      <div className="w-full">
+        <Button onClick={onSubmit}>Submit</Button>
+      </div>
+      <div className="w-full">
+        <Heading fontWeight="bold">Result:</Heading>
+        <div className="flex">
+          <Heading>{result}</Heading>
+          {result?.length > 0 && (<Image src="/Images/copy.png" alt="copy img" width="28" height="28" className="mx-2" />)}
+        </div>
       </div>
     </div>
   )

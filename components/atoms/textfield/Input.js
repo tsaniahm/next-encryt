@@ -8,11 +8,11 @@ const TextField = ({
     isRequired = true || false
 }) => (
     <>
-        <label htmlFor="input">{label}</label>
+        <label htmlFor="input" className="text-base font-bold">{label}</label>
         <input
             id="input"
             type={type}
-            className="w-full h-10 px-2 text-black bg-white rounded-lg"
+            className="w-full h-12 px-2 my-2 text-black bg-white rounded-lg"
             isRequired={isRequired}
             onChange={onChange}
             value={value}
