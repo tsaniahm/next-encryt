@@ -5,7 +5,6 @@ const TextField = ({
     label,
     value,
     placeholder,
-    isRequired = true || false
 }) => (
     <>
         <label htmlFor="input" className="text-base font-bold">{label}</label>
@@ -13,7 +12,6 @@ const TextField = ({
             id="input"
             type={type}
             className="w-full h-12 px-2 my-2 text-black bg-white rounded-lg"
-            isRequired={isRequired}
             onChange={onChange}
             value={value}
             placeholder={placeholder}
