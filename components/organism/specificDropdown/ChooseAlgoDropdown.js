@@ -16,7 +16,7 @@ const ChooseAlgoDropdown = ({ algoritms, selected, setAlgoritm }) => {
     return (
         <>
             <div onClick={handleOpen} className="flex items-center justify-center w-full h-12 bg-white rounded-full cursor-pointer md:w-8/12 xl:w-6/12">
-                <Heading size="xs" fontWeight="bold" transform="uppercase" color="black">{selected} chipper</Heading>
+                <Heading size="xs" fontWeight="bold" transform="uppercase" color="black">{selected} cipher</Heading>
             </div>
             {open && (
                 <div className="absolute z-10 w-11/12 bg-white rounded-lg mt-36 md:w-8/12 xl:w-4/12 xl:mb-32">
@@ -24,7 +24,7 @@ const ChooseAlgoDropdown = ({ algoritms, selected, setAlgoritm }) => {
                         {algoritms?.map((item) => (
                             <div className="w-full py-2 hover:bg-indigo-500" onClick={() =>handleSelect(item)} key={item}>
                                <div className="flex justify-center w-full">
-                               <Heading size="xs" color="black" fontWeight="bold">{item} Chipper</Heading>
+                               <Heading size="xs" color="black" fontWeight="bold">{item} Chipher</Heading>
                                </div>
                             </div>
                         ))}

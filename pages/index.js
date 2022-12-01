@@ -74,7 +74,7 @@ export default function Home() {
         <ChooseAlgoDropdown algoritms={Algoritms} selected={algoritm} setAlgoritm={setAlgoritm} />
         <EncryptDecryptButton type={type} setType={setType} />
         <div className="w-full">
-          <TextField type="text" label={type === 'encryption' ? 'plaintext' : 'chippertext'} onChange={handleInputEncrypt} />
+          <TextField type="text" label={type === 'encryption' ? 'plaintext' : 'ciphertext'} onChange={handleInputEncrypt} />
         </div>
         <div className="w-full">
           <TextField type={algoritm === 'Caesar' ? 'number' : 'text'} label="key" onChange={handleInputKey} />
