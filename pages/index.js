@@ -61,7 +61,7 @@ export default function Home() {
         <meta property="og:title" content="Mr Encrypt" key="title" />
       </Head>
       <div><Toaster /></div>
-      <div className='flex flex-col items-center justify-center w-full px-5 pt-12 sm:px-20 xl:px-64 bg-gradient-to-b from-gray-800 to-black'>
+      <div className='flex flex-col items-center w-full h-screen px-5 pt-10 sm:px-20 xl:px-64 bg-gradient-to-b from-gray-800 to-black'>
         <div className="hidden md:block">
           <Heading size="3xl" fontWeight="bold" transform="uppercase">Mr.Encrypt</Heading>
         </div>
