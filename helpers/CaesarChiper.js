@@ -3,7 +3,8 @@ import { letters } from "../constants"
 export const Encryption = (plaintext, key) => {
 
     let newText = '';
-    let spiltPlaintext = plaintext.split("");
+    let lowerCasePlaintext = plaintext.toLowerCase();
+    let spiltPlaintext = lowerCasePlaintext.split("");
 
     for(const letter of spiltPlaintext) {
         if(!letters.includes(letter)){
@@ -24,7 +25,8 @@ export const Encryption = (plaintext, key) => {
 
 export const Decryption = (chippertext, key) =>{
     let newText = '';
-    let splitChippertext = chippertext.split("");
+    let lowerCaseChipperText = chippertext.toLowerCase();
+    let splitChippertext = lowerCaseChipperText.split("");
 
     for(const letter of splitChippertext) {
         if(!letters.includes(letter)){

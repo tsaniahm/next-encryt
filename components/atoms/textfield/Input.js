@@ -1,6 +1,6 @@
 
 const TextField = ({
-    type = "text" || "password" || "email",
+    type = "text" || "password" || "email" || "number",
     onChange,
     label,
     value,

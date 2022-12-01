@@ -10,15 +10,18 @@ import TextField from "../components/atoms/textfield/Input"
 import ChooseAlgoDropdown from "../components/organism/specificDropdown/ChooseAlgoDropdown"
 import EncryptDecryptButton from "../components/organism/specificButton/EncryptDecryptButton"
 
-import { Decryption, Encryption } from "../helpers/CaesarChiper"
+import { Decryption as CaesarDecrypt, Encryption as CaesarEncrypt } from "../helpers/CaesarChiper"
+import { Decryption as VignereDecrypt, Encryption as VignereEncrypt } from "../helpers/VigenereCipher"
 
-import toast,{ Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import { Algoritms } from "../constants"
 
 export default function Home() {
   const [inputEncrypt, setInputEncrypt] = useState('')
   const [key, setKey] = useState('')
   const [result, setResult] = useState('')
   const [type, setType] = useState('encryption')
+  const [algoritm, setAlgoritm] = useState('Vignere')
 
   const handleInputEncrypt = (e) => {
     setInputEncrypt(e.target.value);
@@ -29,10 +32,18 @@ export default function Home() {
   }
 
   const onSubmit = () => {
-    if (type === "encryption") {
-      setResult(Encryption(inputEncrypt, key));
+    if (algoritm === 'Caesar') {
+      if (type === "encryption") {
+        setResult(CaesarEncrypt(inputEncrypt, key));
+      } else {
+        setResult(CaesarDecrypt(inputEncrypt, key));
+      }
     } else {
-      setResult(Decryption(inputEncrypt, key));
+      if (type === "encryption") {
+        setResult(VignereEncrypt(inputEncrypt, key));
+      } else {
+        setResult(VignereDecrypt(inputEncrypt, key));
+      }
     }
   }
 
@@ -49,7 +60,7 @@ export default function Home() {
         <title>Mr Encrypt</title>
         <meta property="og:title" content="Mr Encrypt" key="title" />
       </Head>
-      <div><Toaster/></div>
+      <div><Toaster /></div>
       <div className='flex flex-col items-center justify-center w-full px-5 pt-12 sm:px-20 xl:px-64 bg-gradient-to-b from-gray-800 to-black'>
         <div className="hidden md:block">
           <Heading size="3xl" fontWeight="bold" transform="uppercase">Mr.Encrypt</Heading>
@@ -60,13 +71,13 @@ export default function Home() {
         <div className="mt-4 mb-2">
           <Heading size="sm" fontWeight="semibold">Choose The Algoritm!!</Heading>
         </div>
-        <ChooseAlgoDropdown />
+        <ChooseAlgoDropdown algoritms={Algoritms} selected={algoritm} setAlgoritm={setAlgoritm} />
         <EncryptDecryptButton type={type} setType={setType} />
         <div className="w-full">
           <TextField type="text" label={type === 'encryption' ? 'plaintext' : 'chippertext'} onChange={handleInputEncrypt} />
         </div>
         <div className="w-full">
-          <TextField type="text" label="key" onChange={handleInputKey} />
+          <TextField type={algoritm === 'Caesar' ? 'number' : 'text'} label="key" onChange={handleInputKey} />
         </div>
         <div className="w-full">
           <Button onClick={onSubmit}>Submit</Button>
